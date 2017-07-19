@@ -24,13 +24,14 @@ curl http://localhost:4741/sign-up \
     "credentials": {
       "email": "'"${EMAIL}"'",
       "password": "'"${PASSWORD}"'",
-      "password_confirmation": "'"${PASSWORD}"'"
+      "password_confirmation": "'"${PASSWORD}"'",
+      "name": "'"${NAME}"'"
     }
   }'
 ```
 
 ```sh
-EMAIL=ava@bob.com PASSWORD=hannah scripts/sign-up.sh
+EMAIL=ava@bob.com PASSWORD=hannah NAME="Alice Bob" scripts/sign-up.sh
 ```
 
 Response:
