@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Book < ApplicationRecord
+class Author < ApplicationRecord
 end
