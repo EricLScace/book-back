@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :update, :destroy]
+  before_action :set_loan, only: %i[show update destroy]
 
   # GET /loans
   def index
@@ -39,13 +41,14 @@ class LoansController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_loan
-      @loan = Loan.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def loan_params
-      params.require(:loan).permit(:user_id, :book, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def loan_params
+    params.require(:loan).permit(:user_id, :book, :date)
+  end
 end
