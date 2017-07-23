@@ -6,7 +6,6 @@ class BooksController < ApplicationController
   # GET /books
   def index
     @books = Book.all
-
     render json: @books
   end
 
@@ -17,6 +16,16 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
+    author_id = Author.find_or_create_by!(name: book_params[:author])[:id]
+    # params = ActionController::Parameters.new(
+    #   book: {
+    #     title: book_params[:title],
+    #     author_id: author_id.to_s
+    #   }
+    # )
+    # params.require(:book).permit[:title, :author_id]
+    stuff = book_params
+    debugger
     @book = Book.new(book_params)
 
     if @book.save
@@ -49,6 +58,7 @@ class BooksController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def book_params
-    params.require(:book).permit(:title)
+    params[:author_id] = 1
+    params.require(:book).permit(:title, :author, :author_id)
   end
 end
